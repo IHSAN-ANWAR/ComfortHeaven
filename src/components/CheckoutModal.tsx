@@ -20,9 +20,6 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
     phone: '',
     address: '',
     city: '',
-    postalCode: '',
-    country: 'United Kingdom',
-    deliveryNotes: '',
     paymentMethod: 'card',
     cardNumber: '•••• •••• •••• 4242',
     cardExp: '12/28',
@@ -99,7 +96,7 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
                       required
                       type="text"
                       className="field"
-                      placeholder="e.g. Leonardo"
+                      placeholder="First Name"
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                     />
@@ -110,7 +107,7 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
                       required
                       type="text"
                       className="field"
-                      placeholder="e.g. Castelli"
+                      placeholder="Last Name"
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                     />
@@ -124,7 +121,7 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
                       required
                       type="email"
                       className="field"
-                      placeholder="concierge@residence.com"
+                      placeholder="example@email.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
@@ -135,7 +132,7 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
                       required
                       type="tel"
                       className="field"
-                      placeholder="+44 20 7946 0912"
+                      placeholder="+92 300 1234567"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     />
@@ -148,62 +145,24 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
                     required
                     type="text"
                     className="field"
-                    placeholder="12 Kensington Palace Gardens"
+                    placeholder="House No. 12, Street 4, Block B"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                   />
                 </div>
 
-                <div className="grid sm:grid-cols-3 gap-6">
+                <div className="grid sm:grid-cols-1 gap-6">
                   <div>
                     <label className="meta text-stone block mb-2">City *</label>
                     <input
                       required
                       type="text"
                       className="field"
-                      placeholder="London"
+                      placeholder="Rawalpindi"
                       value={formData.city}
                       onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                     />
                   </div>
-                  <div>
-                    <label className="meta text-stone block mb-2">Postal Code *</label>
-                    <input
-                      required
-                      type="text"
-                      className="field"
-                      placeholder="W8 4QP"
-                      value={formData.postalCode}
-                      onChange={(e) => setFormData({ ...formData, postalCode: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <label className="meta text-stone block mb-2">Country *</label>
-                    <select
-                      className="field bg-transparent"
-                      value={formData.country}
-                      onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    >
-                      <option value="United Kingdom">United Kingdom</option>
-                      <option value="Italy">Italy</option>
-                      <option value="France">France</option>
-                      <option value="Germany">Germany</option>
-                      <option value="Switzerland">Switzerland</option>
-                      <option value="United States">United States</option>
-                      <option value="United Arab Emirates">United Arab Emirates</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="meta text-stone block mb-2">Architectural Access Notes (Optional)</label>
-                  <input
-                    type="text"
-                    className="field"
-                    placeholder="Freight elevator dimensions, narrow staircases, or gated estate code"
-                    value={formData.deliveryNotes}
-                    onChange={(e) => setFormData({ ...formData, deliveryNotes: e.target.value })}
-                  />
                 </div>
 
                 {/* Subtotal notice */}
@@ -211,7 +170,7 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
                   <div>
                     <span className="meta text-stone">Total Acquisition</span>
                     <p className="text-xl font-light text-charcoal">
-                      ${subtotal.toLocaleString()}
+                      Rs {subtotal.toLocaleString()}
                     </p>
                   </div>
                   <span className="meta text-stone">White-Glove Delivery Included</span>
@@ -249,80 +208,7 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
               </div>
 
               <form onSubmit={handlePlaceOrder} className="space-y-6">
-                {/* Payment Selection */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <button
-                    type="button"
-                    onClick={() => setFormData({ ...formData, paymentMethod: 'card' })}
-                    className={`p-4 border text-left flex items-start gap-3 transition-colors ${
-                      formData.paymentMethod === 'card'
-                        ? 'border-charcoal bg-sand/30'
-                        : 'border-charcoal/15 bg-transparent'
-                    }`}
-                  >
-                    <CreditCard className="h-5 w-5 mt-0.5 text-charcoal" />
-                    <div>
-                      <p className="font-display text-lg text-charcoal">Card Settlement</p>
-                      <p className="meta text-stone text-[0.65rem] mt-0.5">Encrypted 256-bit Stripe / Visa / Amex</p>
-                    </div>
-                  </button>
 
-                  <button
-                    type="button"
-                    onClick={() => setFormData({ ...formData, paymentMethod: 'wire' })}
-                    className={`p-4 border text-left flex items-start gap-3 transition-colors ${
-                      formData.paymentMethod === 'wire'
-                        ? 'border-charcoal bg-sand/30'
-                        : 'border-charcoal/15 bg-transparent'
-                    }`}
-                  >
-                    <Building2 className="h-5 w-5 mt-0.5 text-charcoal" />
-                    <div>
-                      <p className="font-display text-lg text-charcoal">Private Wire Transfer</p>
-                      <p className="meta text-stone text-[0.65rem] mt-0.5">Comfort Haven Concierge Pro-Forma Invoice</p>
-                    </div>
-                  </button>
-                </div>
-
-                {formData.paymentMethod === 'card' ? (
-                  <div className="space-y-4 p-5 bg-sand/20 border border-charcoal/10">
-                    <div>
-                      <label className="meta text-stone block mb-1">Card Number</label>
-                      <input
-                        type="text"
-                        className="field !py-2"
-                        value={formData.cardNumber}
-                        onChange={(e) => setFormData({ ...formData, cardNumber: e.target.value })}
-                      />
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="meta text-stone block mb-1">Expiry Date</label>
-                        <input
-                          type="text"
-                          className="field !py-2"
-                          value={formData.cardExp}
-                          onChange={(e) => setFormData({ ...formData, cardExp: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <label className="meta text-stone block mb-1">Security Code (CVC)</label>
-                        <input
-                          type="text"
-                          className="field !py-2"
-                          value={formData.cardCvc}
-                          onChange={(e) => setFormData({ ...formData, cardCvc: e.target.value })}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-5 bg-sand/20 border border-charcoal/10 text-sm text-brown space-y-2">
-                    <p className="font-display text-base text-charcoal font-medium">Bank Wire Instructions</p>
-                    <p>An official pro-forma invoice will be dispatched immediately to <strong>{formData.email}</strong> with Milan bank coordinates.</p>
-                    <p className="text-xs text-stone">Production queue is secured immediately upon reservation submission.</p>
-                  </div>
-                )}
 
                 {/* Items Summary in Modal */}
                 <div className="border-t border-charcoal/10 pt-4 space-y-3">
@@ -339,7 +225,7 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
                   </div>
                   <div className="flex justify-between items-baseline pt-3 border-t border-charcoal/10">
                     <span className="font-display text-lg text-charcoal">Total Amount</span>
-                    <span className="text-2xl font-light text-charcoal">${subtotal.toLocaleString()}</span>
+                    <span className="text-2xl font-light text-charcoal">Rs {subtotal.toLocaleString()}</span>
                   </div>
                 </div>
 
@@ -374,9 +260,9 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
               </div>
 
               <div>
-                <span className="meta text-taupe">Acquisition Confirmed</span>
+                <span className="meta text-taupe">Order Confirmed</span>
                 <h2 className="display text-4xl sm:text-5xl text-charcoal mt-1">
-                  Commission Reserved.
+                  Order Placed.
                 </h2>
                 <p className="meta text-stone mt-3 tracking-widest">
                   Reference: <span className="text-charcoal font-bold">{orderRef}</span>
@@ -385,10 +271,10 @@ export default function CheckoutModal({ isOpen, onClose }: { isOpen: boolean; on
 
               <div className="max-w-md mx-auto text-brown text-sm leading-relaxed space-y-3 p-6 bg-sand/20 border border-charcoal/10">
                 <p>
-                  Thank you, <strong>{formData.firstName || 'Client'}</strong>. Your bespoke commission has entered our master production scheduling in Milan.
+                  Thank you, <strong>{formData.firstName || 'Customer'}</strong>. Your order has been received and is being processed.
                 </p>
                 <p className="text-xs text-stone">
-                  A verification dossier has been dispatched to <strong>{formData.email}</strong>. Our dedicated private client manager will contact you within 24 hours to coordinate delivery timing.
+                  A confirmation email has been sent to <strong>{formData.email}</strong>. Our team will get in touch with you within 24 hours regarding your delivery.
                 </p>
               </div>
 

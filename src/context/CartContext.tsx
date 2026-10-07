@@ -154,7 +154,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const totalItems = items.reduce((acc, item) => acc + item.quantity, 0)
 
-  // Calculate numeric subtotal from prices like "$2,499"
+  // Calculate numeric subtotal from prices like "Rs 2,499"
   const subtotal = items.reduce((acc, item) => {
     const numeric = parseInt(item.product.price.replace(/[^0-9]/g, ''), 10) || 0
     return acc + numeric * item.quantity

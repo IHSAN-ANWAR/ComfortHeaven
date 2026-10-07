@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ArrowUpRight, Heart, LayoutGrid, Rows3, SlidersHorizontal, Sparkles, X } from 'lucide-react'
+import { ArrowUpRight, Heart, LayoutGrid, Rows3, Sparkles } from 'lucide-react'
 import { products, categories, num } from '../data/products'
 import { ProductImage, Reveal, LineReveal } from '../components/MotionComponents'
 import { useCart } from '../context/CartContext'
@@ -11,37 +11,15 @@ export default function Collection() {
 
   // Layout View mode: 'editorial' (large alternating) vs 'grid' (gallery)
   const [viewMode, setViewMode] = useState<'editorial' | 'grid'>('editorial')
-  const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'name'>('featured')
-  const [selectedMaterial, setSelectedMaterial] = useState<string>('all')
 
   const activeCategory = category ? category.toLowerCase() : 'all'
 
-  // Extract all distinct materials
-  const allMaterials = useMemo(() => {
-    const set = new Set<string>()
-    products.forEach((p) => p.materials.forEach((m) => set.add(m)))
-    return Array.from(set)
-  }, [])
-
-  // Filter & Sort products
+  // Filter products by category
   const filteredProducts = useMemo(() => {
-    let list = activeCategory === 'all'
+    return activeCategory === 'all'
       ? products
       : products.filter((p) => p.category.toLowerCase() === activeCategory)
-
-    if (selectedMaterial !== 'all') {
-      list = list.filter((p) => p.materials.some((m) => m.toLowerCase().includes(selectedMaterial.toLowerCase())))
-    }
-
-    const parsePrice = (priceStr: string) => parseInt(priceStr.replace(/[^0-9]/g, ''), 10) || 0
-
-    return [...list].sort((a, b) => {
-      if (sortBy === 'price-asc') return parsePrice(a.price) - parsePrice(b.price)
-      if (sortBy === 'price-desc') return parsePrice(b.price) - parsePrice(a.price)
-      if (sortBy === 'name') return a.name.localeCompare(b.name)
-      return 0 // default
-    })
-  }, [activeCategory, selectedMaterial, sortBy])
+  }, [activeCategory])
 
   const activeDef = categories.find((c) => c.slug === activeCategory)
 
@@ -90,53 +68,8 @@ export default function Collection() {
           })}
         </div>
 
-        {/* Toolbar: View Switcher, Filter & Sorting */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mt-8 pt-6 border-t border-charcoal/5">
-          <div className="flex flex-wrap items-center gap-4">
-            {/* Material Filter */}
-            <div className="flex items-center gap-2">
-              <span className="meta text-stone text-[0.65rem]">Material:</span>
-              <select
-                value={selectedMaterial}
-                onChange={(e) => setSelectedMaterial(e.target.value)}
-                className="bg-transparent border-0 border-b border-charcoal/20 text-xs text-charcoal py-1 focus:outline-none focus:border-charcoal font-display"
-              >
-                <option value="all">All Raw Materials</option>
-                <option value="oak">European Oak</option>
-                <option value="walnut">American Walnut</option>
-                <option value="travertine">Italian Travertine</option>
-                <option value="bouclé">Bouclé Wool</option>
-                <option value="leather">Vegetable Leather</option>
-                <option value="linen">Belgian Linen</option>
-              </select>
-              {selectedMaterial !== 'all' && (
-                <button
-                  type="button"
-                  onClick={() => setSelectedMaterial('all')}
-                  className="text-stone hover:text-charcoal p-0.5"
-                  aria-label="Clear material filter"
-                >
-                  <X className="h-3 w-3" />
-                </button>
-              )}
-            </div>
-
-            {/* Sorting */}
-            <div className="flex items-center gap-2">
-              <span className="meta text-stone text-[0.65rem]">Order:</span>
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value as any)}
-                className="bg-transparent border-0 border-b border-charcoal/20 text-xs text-charcoal py-1 focus:outline-none focus:border-charcoal font-display"
-              >
-                <option value="featured">Curated Sequence</option>
-                <option value="price-asc">Valuation: Low to High</option>
-                <option value="price-desc">Valuation: High to Low</option>
-                <option value="name">Alphabetical</option>
-              </select>
-            </div>
-          </div>
-
+        {/* Toolbar: View Switcher */}
+        <div className="flex flex-wrap items-center justify-end gap-4 mt-8 pt-6 border-t border-charcoal/5">
           {/* View Mode Toggle */}
           <div className="flex items-center gap-3">
             <span className="meta text-stone text-[0.65rem] hidden sm:inline">View:</span>
@@ -170,13 +103,10 @@ export default function Collection() {
       <div className="wrap">
         {filteredProducts.length === 0 ? (
           <div className="py-24 text-center">
-            <p className="display text-3xl text-taupe">No pieces match current criteria.</p>
-            <button
-              onClick={() => { setSelectedMaterial('all'); setSortBy('featured') }}
-              className="btn-solid meta mt-8"
-            >
-              Reset Filters
-            </button>
+            <p className="display text-3xl text-taupe">No pieces found in this category.</p>
+            <Link to="/collection" className="btn-solid meta mt-8 inline-flex">
+              View All Pieces
+            </Link>
           </div>
         ) : viewMode === 'editorial' ? (
           /* EDITORIAL ALTERNATING SPREAD */

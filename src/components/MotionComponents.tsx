@@ -17,7 +17,7 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-10% 0px' }}
+      viewport={{ once: true, amount: 0.01 }}
       transition={{ duration, delay, ease: EASE }}
     >
       {children}
@@ -37,7 +37,7 @@ export function LineReveal({
             className="block"
             initial={{ y: '115%', rotate: 2 }}
             whileInView={{ y: '0%', rotate: 0 }}
-            viewport={{ once, margin: '-8% 0px' }}
+            viewport={{ once, amount: 0.01 }}
             transition={{ duration: 1.5, delay: delay + i * stagger, ease: EASE }}
           >
             {line}
@@ -92,7 +92,7 @@ export function ProductImage({
   const onLeave = () => { mx.set(0); my.set(0) }
 
   return (
-    <div className={`[perspective:1600px] ${className}`}>
+    <div className={`relative [perspective:1600px] ${className}`}>
       <motion.div
         ref={ref}
         data-cursor={cursor}
@@ -100,7 +100,7 @@ export function ProductImage({
         onMouseLeave={onLeave}
         initial={{ opacity: 0, scale: 0.9, y: 80, rotateY: -8 }}
         whileInView={{ opacity: 1, scale: 1, y: 0, rotateY: 0 }}
-        viewport={{ once: true, margin: '-8% 0px' }}
+        viewport={{ once: true, amount: 0.01 }}
         transition={{ duration: 1.8, ease: EASE }}
         style={{ transformStyle: 'preserve-3d' }}
         className={`relative w-full overflow-hidden bg-sand ${aspect}`}
@@ -110,7 +110,7 @@ export function ProductImage({
           <motion.img
             src={src} alt={alt}
             loading={priority ? 'eager' : 'lazy'} decoding="async"
-            fetchPriority={priority ? 'high' : 'auto'}
+            {...{ fetchpriority: priority ? 'high' : 'auto' }}
             onLoad={() => setLoaded(true)}
             style={reduce ? undefined : { y, scale }}
             className={`h-full w-full object-cover transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}

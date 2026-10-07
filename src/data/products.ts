@@ -30,7 +30,7 @@ export const products: Product[] = [
   {
     id: 'luna-sofa', name: 'Luna', type: 'Sofa', category: 'Living',
     tagline: 'Sculptural comfort.',
-    price: '$2,499',
+    price: 'Rs 2,499',
     description: 'A single sweeping curve, wrapped in hand-tailored bouclé and set on a solid oak plinth. Designed for modern interiors that value stillness.',
     story: 'Luna began as a clay model, shaped by hand until the silhouette felt like a held breath. Every seam follows the curve of the body.',
     image: luna,
@@ -41,7 +41,7 @@ export const products: Product[] = [
   {
     id: 'noir-bed', name: 'Noir', type: 'Bed', category: 'Bedroom',
     tagline: 'Quiet luxury for the bedroom.',
-    price: '$3,890',
+    price: 'Rs 3,890',
     description: 'A low platform of smoked oak beneath a tall, softly padded headboard in charcoal linen. A room within a room.',
     story: 'Noir is the colour of the hour before sleep. The headboard rises to frame the dark, never to dominate it.',
     image: noir,
@@ -52,7 +52,7 @@ export const products: Product[] = [
   {
     id: 'arc-lounge-chair', name: 'Arc', type: 'Lounge Chair', category: 'Living',
     tagline: 'Form meets comfort.',
-    price: '$1,780',
+    price: 'Rs 1,780',
     description: 'A single leather shell cradled by a slender walnut frame. Generous in proportion, restrained in expression.',
     story: 'Arc is drawn from one gesture — a sweep of the hand that becomes a back, an arm, a place to stay.',
     image: arc,
@@ -63,7 +63,7 @@ export const products: Product[] = [
   {
     id: 'forma-coffee-table', name: 'Forma', type: 'Coffee Table', category: 'Living',
     tagline: 'A quiet monument.',
-    price: '$2,150',
+    price: 'Rs 2,150',
     description: 'A disc of honed travertine resting on a sculpted stone pedestal. Every piece carries its own geology.',
     story: 'Forma is quarried, not manufactured. Each table is cut from a single block, so no two share the same grain.',
     image: forma,
@@ -74,7 +74,7 @@ export const products: Product[] = [
   {
     id: 'mona-dining-chair', name: 'Mona', type: 'Dining Chair', category: 'Dining',
     tagline: 'Poise at the table.',
-    price: '$690',
+    price: 'Rs 690',
     description: 'A sculpted back that holds you softly, upholstered in warm taupe woven linen over smoked oak.',
     story: 'Mona was designed for long dinners — a chair you forget about, so you can remember the evening.',
     image: mona,
@@ -85,7 +85,7 @@ export const products: Product[] = [
   {
     id: 'aura-sectional', name: 'Aura', type: 'Sectional Sofa', category: 'Living',
     tagline: 'Space to gather.',
-    price: '$5,600',
+    price: 'Rs 5,600',
     description: 'A deep, modular sectional in soft wool. Reconfigure it around the way you live — from intimate evenings to long afternoons.',
     story: 'Aura is built from loose, feather-filled cushions on a low frame, meant to be lived in rather than looked at.',
     image: aura,
@@ -96,7 +96,7 @@ export const products: Product[] = [
   {
     id: 'vela-bedside-table', name: 'Vela', type: 'Bedside Table', category: 'Bedroom',
     tagline: 'A small, perfect thing.',
-    price: '$840',
+    price: 'Rs 840',
     description: 'A single rounded drawer in dark walnut with a turned brass pull. Intimate in scale, enduring in character.',
     story: 'Vela keeps the night close — a book, a glass, a lamp, held in a single drawer.',
     image: vela,
@@ -107,7 +107,7 @@ export const products: Product[] = [
   {
     id: 'orbit-dining-table', name: 'Orbit', type: 'Dining Table', category: 'Dining',
     tagline: 'Gravity, softened.',
-    price: '$4,320',
+    price: 'Rs 4,320',
     description: 'An oval oak top balanced on a single sculpted pedestal. A table that gathers rather than divides.',
     story: 'Orbit has no head and no foot — only a centre, and everyone around it.',
     image: orbit,

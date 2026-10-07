@@ -55,7 +55,7 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <CartProvider>
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
         {/* Luxury custom cursor on fine pointers — disabled: was causing site slowdown */}
         {/* <Cursor /> */}

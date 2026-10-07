@@ -237,7 +237,7 @@ export default function CartDrawer() {
                         <span className="text-xs text-stone">Taxes calculated at settlement</span>
                       </div>
                       <span className="text-2xl font-light text-charcoal">
-                        ${subtotal.toLocaleString()}
+                        Rs {subtotal.toLocaleString()}
                       </span>
                     </div>
 

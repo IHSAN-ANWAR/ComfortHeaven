@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
 import { ProductImage, LineReveal, Reveal, EASE } from './MotionComponents'
-import lunaImg from '../assets/luna.jpg'
+
+import auraImg from '../assets/aura.jpg'
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -53,7 +54,7 @@ export default function Hero() {
         >
           <div className="relative group">
             <ProductImage
-              src={lunaImg}
+              src={auraImg}
               alt="Luna Curved Bouclé Sofa"
               aspect="aspect-[16/10] md:aspect-[16/9]"
               priority
@@ -72,7 +73,7 @@ export default function Hero() {
                 <p className="display text-2xl text-charcoal">Luna Sofa</p>
               </div>
               <div className="h-6 w-px bg-charcoal/15" />
-              <span className="meta text-charcoal font-medium">$2,499</span>
+              <span className="meta text-charcoal font-medium">Rs 2,499</span>
             </motion.div>
           </div>
         </motion.div>
