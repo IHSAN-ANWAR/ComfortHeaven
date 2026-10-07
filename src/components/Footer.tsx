@@ -112,7 +112,7 @@ export default function Footer() {
         </Reveal>
       </div>
 
-      <div aria-hidden className="display wrap select-none whitespace-nowrap text-center text-[clamp(3rem,14.5vw,16rem)] uppercase leading-[0.8] tracking-[0.04em] text-ivory/[0.07]">
+      <div aria-hidden className="display wrap select-none whitespace-nowrap overflow-hidden text-center text-[clamp(1.6rem,8.5vw,16rem)] uppercase leading-[0.8] tracking-[0.04em] text-ivory/[0.07]">
         Comfort Haven
       </div>
 
